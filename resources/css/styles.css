@@ -1,0 +1,21 @@
+input:focus,
+textarea:focus {
+    border: 1px solid rgb(209 213 219);
+    outline: none;
+
+}
+
+#darkmode-toggler i {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transform: translateX(-30px);
+    transition: all 0.25s ease-in-out;
+    transform-origin: bottom right;
+}
+
+#darkmode-toggler i.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
