@@ -23,24 +23,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/run-scheduler', function (Request $request) {
-
-    $username = $request->input('username');
-    $password = $request->input('password');
-
-    $envUsername = env('SCHEDULER_USERNAME');
-    $envPassword = env('SCHEDULER_PASSWORD');
-
-    if ($username === $envUsername && $password === $envPassword) {
-        Artisan::call('schedule:run');
-        return 'Scheduler executed';
-    }
-
-    return response('Unauthorized', 401);
-});
 
 // Authenticated routes
 Route::middleware(['forget-session'])->group(function () {
+
+    // Scheduler
+    Route::get('/run-scheduler', [App\Http\Controllers\SchedulerController::class, 'runScheduler'])->name('run-scheduler');
 
     Route::middleware('auth')->group(function () {
         Route::get('/', [SessionController::class, 'index'])->name('homepage');

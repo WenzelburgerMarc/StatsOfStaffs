@@ -188,4 +188,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    // Scheduler Auth
+    'scheduler_username' => env('SCHEDULER_USERNAME', 'default_username'),
+    'scheduler_password' => env('SCHEDULER_PASSWORD', 'default_password'),
+
 ];
