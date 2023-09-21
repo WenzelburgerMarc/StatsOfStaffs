@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Absence;
-use App\services\AbsenceService;
+use App\Services\AbsenceService;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;

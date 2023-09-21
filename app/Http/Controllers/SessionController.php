@@ -52,7 +52,7 @@ class SessionController extends Controller
     public function destroy($blocked = false)
     {
         auth()->logout();
-        if (! $blocked) {
+        if (!$blocked) {
             return redirect('/login')->with('info', 'Goodbye!');
         }
 

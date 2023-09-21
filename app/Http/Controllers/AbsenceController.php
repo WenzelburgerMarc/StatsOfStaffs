@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AbsenceReason;
 use App\Models\AbsenceStatus;
 use App\Models\User;
-use App\services\AbsenceService;
+use App\Services\AbsenceService;
 
 class AbsenceController extends Controller
 {
@@ -17,7 +17,7 @@ class AbsenceController extends Controller
     public function store(User $username = null)
     {
 
-        if (! isset($username)) {
+        if (!isset($username)) {
             $attributes = AbsenceService::getValidatedAttributes(request()->all());
             if (auth()->user()->isAdmin()) {
                 $attributes['status_id'] = 2;
@@ -34,7 +34,7 @@ class AbsenceController extends Controller
         } else {
             $attributes = AbsenceService::getValidatedAttributes(request()->all(), null, true);
             $username->absences()->create($attributes);
-            $link = '/admin/manage-employees/'.$username->username.'/absences';
+            $link = '/admin/manage-employees/' . $username->username . '/absences';
 
             return redirect($link)->with('success', 'Absence Created!');
         }

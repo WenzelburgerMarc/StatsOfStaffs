@@ -3,7 +3,7 @@
 namespace App\Livewire\NewChatsList;
 
 use App\Models\Role;
-use App\services\UserService;
+use App\Services\UserService;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;

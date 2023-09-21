@@ -12,15 +12,15 @@ class UserService
     {
         $query = User::query();
 
-        if (! $findYourself) {
+        if (!$findYourself) {
             $query->where('id', '!=', auth()->id());
         }
 
         if ($search) {
             $query->where(function ($q) use ($search) {
-                $q->where('username', 'like', '%'.$search.'%')
-                    ->orWhere('name', 'like', '%'.$search.'%')
-                    ->orWhere('email', 'like', '%'.$search.'%');
+                $q->where('username', 'like', '%' . $search . '%')
+                    ->orWhere('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
             });
         }
 
@@ -33,7 +33,7 @@ class UserService
 
     public function setRoleID(User $user, $value)
     {
-        if (! $user->exists || (($value == 1) && auth()->user()->isRootAdmin())) {
+        if (!$user->exists || (($value == 1) && auth()->user()->isRootAdmin())) {
             $user->role_id = $value;
         } elseif (($value == 3 || $value == 2) && ($this->isAdmin($user) || auth()->user()->isRootAdmin())) {
             $user->role_id = $value;

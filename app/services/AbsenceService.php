@@ -1,6 +1,6 @@
 <?php
 
-namespace App\services;
+namespace App\Services;
 
 use App\Models\Absence;
 use App\Models\AbsenceReason;
@@ -46,7 +46,7 @@ class AbsenceService
         $rules = [
             'from_date' => ['required', 'date'],
             'from_time' => ['required', 'date_format:H:i'],
-            'to_date' => ['required', 'date', 'after_or_equal:from_date', ! $asAdmin ? new SameYear($data['from_date']) : ''],
+            'to_date' => ['required', 'date', 'after_or_equal:from_date', !$asAdmin ? new SameYear($data['from_date']) : ''],
             'to_time' => ['required', 'date_format:H:i'],
             'reason' => ['required', 'exists:absence_reasons,id'],
             'document' => ['nullable', 'file', 'max:1024', 'mimes:pdf,doc,docx,txt,png,svg,jpg,jpeg,rtf'],
@@ -61,8 +61,8 @@ class AbsenceService
         }
 
         $attributes = $validator->validated();
-        $attributes['start_date'] = $data['from_date'].' '.$data['from_time'];
-        $attributes['end_date'] = $data['to_date'].' '.$data['to_time'];
+        $attributes['start_date'] = $data['from_date'] . ' ' . $data['from_time'];
+        $attributes['end_date'] = $data['to_date'] . ' ' . $data['to_time'];
         $attributes['absence_reason_id'] = $attributes['reason'];
 
         unset($attributes['reason']);
@@ -88,8 +88,8 @@ class AbsenceService
                 $currentDocument = $absence->document;
 
                 if (isset($currentDocument)) {
-                    if (Storage::exists('documents/'.$absence->document)) {
-                        Storage::delete('documents/'.$absence->document);
+                    if (Storage::exists('documents/' . $absence->document)) {
+                        Storage::delete('documents/' . $absence->document);
                     }
                 }
             }
@@ -127,7 +127,7 @@ class AbsenceService
         $query = Absence::where('user_id', $employee->id);
 
         if ($commentSearch) {
-            $query->where('comment', 'like', '%'.$commentSearch.'%');
+            $query->where('comment', 'like', '%' . $commentSearch . '%');
         }
 
         $this->applyDateSearch($query, $dateSearch);
@@ -145,7 +145,7 @@ class AbsenceService
 
     private function applyDateSearch($query, ?string $dateSearch): void
     {
-        if (! $dateSearch) {
+        if (!$dateSearch) {
             return;
         }
 
@@ -212,7 +212,7 @@ class AbsenceService
                 }
             }
 
-            if (! $startDate->gt($endDate)) {
+            if (!$startDate->gt($endDate)) {
                 $daysOff += $startDate->diffInDays($endDate) + 1;
             }
         }
@@ -236,9 +236,9 @@ class AbsenceService
 
         if ($userSearch) {
             $query->whereHas('user', function ($subQuery) use ($userSearch) {
-                $subQuery->where('name', 'like', '%'.$userSearch.'%')
-                    ->orWhere('email', 'like', '%'.$userSearch.'%')
-                    ->orWhere('username', 'like', '%'.$userSearch.'%');
+                $subQuery->where('name', 'like', '%' . $userSearch . '%')
+                    ->orWhere('email', 'like', '%' . $userSearch . '%')
+                    ->orWhere('username', 'like', '%' . $userSearch . '%');
             });
         }
 

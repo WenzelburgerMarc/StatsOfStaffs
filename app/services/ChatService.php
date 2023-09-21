@@ -16,7 +16,7 @@ namespace App\Services {
         {
 
             if ($search || $readStatusSearchID) {
-                Paginator::currentPageResolver(fn () => 1);
+                Paginator::currentPageResolver(fn() => 1);
             }
 
             $subQuery = Chat::select(DB::raw('
@@ -36,7 +36,7 @@ namespace App\Services {
                 })
                 ->groupBy('smaller_id', 'larger_id');
 
-            $chats = Chat::joinSub($subQuery, 'sub', fn ($join) => $join->on('chats.id', '=', 'sub.last_chat_id'))
+            $chats = Chat::joinSub($subQuery, 'sub', fn($join) => $join->on('chats.id', '=', 'sub.last_chat_id'))
                 ->leftJoin('users as sender', 'chats.sender_id', '=', 'sender.id')
                 ->leftJoin('users as receiver', 'chats.receiver_id', '=', 'receiver.id')
                 ->orderByDesc('chats.created_at');
@@ -44,14 +44,14 @@ namespace App\Services {
             if ($search) {
                 $chats->where(function ($query) use ($search, $user) {
                     $query->where(function ($innerQuery) use ($search) {
-                        $innerQuery->where('sender.username', 'like', '%'.$search.'%')
-                            ->orWhere('sender.name', 'like', '%'.$search.'%')
-                            ->orWhere('sender.email', 'like', '%'.$search.'%');
+                        $innerQuery->where('sender.username', 'like', '%' . $search . '%')
+                            ->orWhere('sender.name', 'like', '%' . $search . '%')
+                            ->orWhere('sender.email', 'like', '%' . $search . '%');
                     })->where('receiver_id', $user->id)
                         ->orWhere(function ($innerQuery) use ($search) {
-                            $innerQuery->where('receiver.username', 'like', '%'.$search.'%')
-                                ->orWhere('receiver.name', 'like', '%'.$search.'%')
-                                ->orWhere('receiver.email', 'like', '%'.$search.'%');
+                            $innerQuery->where('receiver.username', 'like', '%' . $search . '%')
+                                ->orWhere('receiver.name', 'like', '%' . $search . '%')
+                                ->orWhere('receiver.email', 'like', '%' . $search . '%');
                         })->where('sender_id', $user->id);
                 });
             }

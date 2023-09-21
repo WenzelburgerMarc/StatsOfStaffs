@@ -1,0 +1,79 @@
+{
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-003f1154.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-faae6fc0.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-7d81a1a7.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-9169d8be.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-cea79b34.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-886c8611.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf": {
+    "file": "assets/fa-v4compatibility-455e8e72.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility-335fd7d9.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-6d0b395f.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/css/styles.css": {
+    "file": "assets/styles-8405929e.css",
+    "isEntry": true,
+    "src": "resources/css/styles.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-acfe5849.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/fa-brands-400-faae6fc0.woff2",
+      "assets/fa-brands-400-003f1154.ttf",
+      "assets/fa-regular-400-9169d8be.woff2",
+      "assets/fa-regular-400-7d81a1a7.ttf",
+      "assets/fa-solid-900-886c8611.woff2",
+      "assets/fa-solid-900-cea79b34.ttf",
+      "assets/fa-v4compatibility-335fd7d9.woff2",
+      "assets/fa-v4compatibility-455e8e72.ttf"
+    ],
+    "css": [
+      "assets/app-acfe5849.css"
+    ],
+    "file": "assets/app-a81d0b5a.js",
+    "imports": [
+      "resources/js/bootstrap.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/bootstrap.js": {
+    "file": "assets/bootstrap-6c47a182.js",
+    "isEntry": true,
+    "src": "resources/js/bootstrap.js"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-fabb6531.css",
+    "isEntry": true,
+    "src": "resources/sass/app.scss"
+  }
+}

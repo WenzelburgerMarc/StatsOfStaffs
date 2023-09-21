@@ -2,7 +2,7 @@
 
 namespace App\Livewire\ChatWindow;
 
-use App\services\ChatService;
+use App\Services\ChatService;
 use Carbon\Carbon;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -69,7 +69,7 @@ class MyChatWindow extends Component
 
     public function sendMessage()
     {
-        if ($this->message == null || str_replace(' ', '', $this->message) == '' || ! isset($this->message)) {
+        if ($this->message == null || str_replace(' ', '', $this->message) == '' || !isset($this->message)) {
 
             return;
         }
@@ -88,7 +88,7 @@ class MyChatWindow extends Component
 
     public function notifyNewMessage($data)
     {
-        $chatMessage = (object) $data['message'];
+        $chatMessage = (object)$data['message'];
         $chatMessage->created_at = Carbon::parse($chatMessage->created_at);
 
         if ($this->otherUser->id == $chatMessage->sender_id || $this->otherUser->id == $chatMessage->receiver_id) {

@@ -7,7 +7,7 @@ use App\Models\Absence;
 use App\Models\AbsenceReason;
 use App\Models\AbsenceStatus;
 use App\Models\User;
-use App\services\AbsenceService;
+use App\Services\AbsenceService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Livewire\Attributes\On;
@@ -182,18 +182,18 @@ class MyAbsencesList extends Component
     {
         try {
             if (isset($absence->document)) {
-                Storage::delete('documents/'.$absence->document);
+                Storage::delete('documents/' . $absence->document);
                 $absence->update([
                     'document' => null,
                     'original_document_name' => null,
                 ]);
                 $this->cancelEdit();
-                if (! $hideFlashMessages) {
+                if (!$hideFlashMessages) {
                     $this->dispatch('sendFlashMessage', 'success', 'Document deleted.');
 
                 }
             } else {
-                if (! $hideFlashMessages) {
+                if (!$hideFlashMessages) {
                     $this->dispatch('sendFlashMessage', 'info', 'No document to delete.');
                 }
             }
@@ -228,7 +228,7 @@ class MyAbsencesList extends Component
 
         }
 
-        if (Absence::find($this->absenceEditID)->status->status !== 'pending' && ! auth()->user()->isAdmin()) {
+        if (Absence::find($this->absenceEditID)->status->status !== 'pending' && !auth()->user()->isAdmin()) {
             $this->dispatch('sendFlashMessage', 'error', 'You can only edit pending absences.');
         } else {
             $absence->update($attributes);
@@ -308,7 +308,7 @@ class MyAbsencesList extends Component
     {
         $excel = app()->make(Excel::class);
         $file = $excel->raw(new ExportAbsence($absence), \Maatwebsite\Excel\Excel::CSV);
-        $fileName = $absence->id.'absence.csv';
+        $fileName = $absence->id . 'absence.csv';
 
         $path = "absences/{$fileName}";
         Storage::disk('private')->put($path, $file);

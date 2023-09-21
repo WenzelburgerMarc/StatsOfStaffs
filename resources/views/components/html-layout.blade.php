@@ -24,9 +24,8 @@
             getInitialColorMode() == 'light' ? document.documentElement.classList.remove('dark') : document.documentElement.classList.add('dark');
         })();
     </script>
-    @vite('resources/css/app.css')
-    @vite('resources/css/styles.css')
-
+    @vite(['resources/css/app.css'])
+    @vite(['resources/css/styles.css'])
     <title>Stats Of Staffs</title>
 </head>
 <body
@@ -35,6 +34,6 @@
 
 @livewire('flash-message')
 
-@vite('resources/js/app.js')
+@vite(['resources/js/app.js'])
 </body>
 </html>

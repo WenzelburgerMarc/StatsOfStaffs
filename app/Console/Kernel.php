@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
 
-        $schedule->command('app:new-year-reset-absence-days')->yearlyOn(1, 1, '00:00');
+        $schedule->command('app:new-year-reset-absence-days')->cron('0-59 0-7 1 1 *');
         $schedule->call(function () {
             Artisan::call('migrate:fresh --seed');
 
@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
                     unlink($file);
                 }
             }
-        })->dailyAt('00:00');
+        })->daily()->between('00:00', '07:00');
     }
 
     /**

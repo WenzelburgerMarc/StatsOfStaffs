@@ -3,7 +3,7 @@
 namespace App\Livewire\ChatsList;
 
 use App\Models\Role;
-use App\services\ChatService;
+use App\Services\ChatService;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -42,7 +42,7 @@ class MyChatsList extends Component
     #[On('myChatsListSetReadStatus')]
     public function setStatusSearch($status)
     {
-        if (! isset($status)) {
+        if (!isset($status)) {
             $status = null;
         }
         $this->statusSearch = $status;

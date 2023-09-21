@@ -19,8 +19,8 @@ class ChatController extends Controller
         $otherUser = User::where('username', $username)->first();
         $currentUser = auth()->user();
 
-        if (! isset($currentUser)
-            || ! isset($otherUser)
+        if (!isset($currentUser)
+            || !isset($otherUser)
             || $currentUser->username === $username) {
             return redirect()->route('chats');
         }
