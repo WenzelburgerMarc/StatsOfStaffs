@@ -22,31 +22,40 @@ class SessionController extends Controller
     {
 
         $attributes = $request->validate([
-            'username' => 'required|exists:users,username|max:255',
+            'identity' => 'required|max:255',
             'password' => 'required|min:7|max:255',
         ]);
 
         $rememberMe = $request->input('rememberme') == 'on';
 
-        if (auth()->attempt($attributes, $rememberMe)) {
+        if (auth()->attempt(['username' => $attributes['identity'], 'password' => $attributes['password']], $rememberMe)) {
 
-            $userService = new UserService();
-            if ($userService->isBlocked(auth()->user())) {
+            return $this->successfullLogin();
+        }
+        if (auth()->attempt(['email' => $attributes['identity'], 'password' => $attributes['password']], $rememberMe)) {
 
-                $this->destroy(true);
-
-                return redirect('/login')->with('error', 'Access Denied! Your account has been blocked.');
-            }
-
-            session()->regenerate();
-
-            return redirect('/')->with('info', 'Welcome Back!');
+            return $this->successfullLogin();
         }
 
-        throw ValidationException::withMessages([
+        return throw ValidationException::withMessages([
             'password' => 'Your provided credentials could not be verified.',
 
         ]);
+    }
+
+    public function successfullLogin()
+    {
+        $userService = new UserService();
+        if ($userService->isBlocked(auth()->user())) {
+
+            $this->destroy(true);
+
+            return redirect('/login')->with('error', 'Access Denied! Your account has been blocked.');
+        }
+
+        session()->regenerate();
+
+        return redirect('/')->with('info', 'Welcome Back!');
     }
 
     public function destroy($blocked = false)

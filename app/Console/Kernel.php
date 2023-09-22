@@ -2,7 +2,6 @@
 
 namespace App\Console;
 
-use Artisan;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -18,20 +17,24 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
 
-        $schedule->command('app:new-year-reset-absence-days')->cron('0-59 0-7 1 1 *');
-        $schedule->call(function () {
-            Artisan::call('migrate:fresh --seed');
-
-            Artisan::call('session:flush');
-
-            // Delete all files in storage
-            $files = glob(storage_path('app/private/*'));
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    unlink($file);
-                }
-            }
-        })->daily()->between('00:00', '07:00');
+//        $today = date('Y-m-d');
+//
+//        if ($today === date('Y') . '-01-01') {
+//            $schedule->command('app:new-year-reset-absence-days');
+//        }
+//        $schedule->call(function () {
+//            $output = null;
+//            $resultCode = null;
+//            exec("/usr/bin/php8.1-cli artisan migrate:fresh --seed", $output, $resultCode);
+//            session()->flush();
+//
+//            $files = glob(storage_path('app/private/*'));
+//            foreach ($files as $file) {
+//                if (is_file($file) && $file !== storage_path('app/private/avatars/default-avatar.png')) {
+//                    unlink($file);
+//                }
+//            }
+//        });
     }
 
     /**
