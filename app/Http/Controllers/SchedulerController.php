@@ -18,12 +18,12 @@ class SchedulerController extends Controller
             $today = date('Y-m-d');
 
             if ($today === date('Y') . '-01-01') {
-                exec("cd /kunden/homepages/14/d960314401/htdocs/StatsOfStaffs && /usr/bin/php8.1-cli artisan app:new-year-reset-absence-days");
+                exec("cd projectpath && /usr/bin/php8.1-cli artisan app:new-year-reset-absence-days");
             }
 
             $output = null;
             $resultCode = null;
-            exec("cd /kunden/homepages/14/d960314401/htdocs/StatsOfStaffs && /usr/bin/php8.1-cli artisan migrate:fresh --seed --force", $output, $resultCode);
+            exec("cd projectpath && /usr/bin/php8.1-cli artisan migrate:fresh --seed --force", $output, $resultCode);
             session()->flush();
 
             $this->deleteFiles(storage_path('app/private'));
